@@ -1,23 +1,22 @@
 
-name: My First GitHub Action
+name: Python CI
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-  first-job:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print a message
-        run: echo "Hello! My GitHub Action is running."
+      - name: Check out repository
+        uses: actions/checkout@v5
 
-      - name: Show the runner operating system
-        run: echo "This job is running on GitHub's Linux runner."
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
 
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: List repository files
-        run: ls -la
+      - name: Run automated tests
+        run: python -m unittest -v
