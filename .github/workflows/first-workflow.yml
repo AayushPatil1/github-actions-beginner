@@ -1,0 +1,23 @@
+
+name: My First GitHub Action
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print a message
+        run: echo "Hello! My GitHub Action is running."
+
+      - name: Show the runner operating system
+        run: echo "This job is running on GitHub's Linux runner."
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: List repository files
+        run: ls -la
